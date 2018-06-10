@@ -1,0 +1,13 @@
+.thumbnail img {
+    width: 100%;
+}
+
+.body{
+    background-color: purple;
+}
+.thumbnail {
+    padding: 0;
+}
+.delete-form{
+    display: inline;
+}
