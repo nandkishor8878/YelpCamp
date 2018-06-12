@@ -1,6 +1,40 @@
-<% include partials/header %>
-<h1>You are on Landing page!!!</h1>
-
-<h2>Well Come to YelpCamp</h2>
-<a href="/campground">Got to Camp Grounds</a>
-<% include partials/footer %>
+<!DOCTYPE html>
+<html>
+        <head>
+            <title>
+                YelpCamp 
+            </title>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+            <link rel="stylesheet" type="text/css" href="/stylesheets/landing.css">
+        </head>
+        <body>
+            
+            <div class="container">
+              <%  if( error && error.length > 0 ){ %>
+                    <div class="alert alert-denger" role="alert">
+                        <%= error %>
+                    </div>
+                    <% } %>
+            <%  if( success && success.length > 0 ){ %>
+                    <div class="alert alert-success" role="alert">
+                        <%= success %>
+                    </div>
+                    <% } %>
+            </div>
+            <div id=landing-body>
+            
+                <div id="landing-header">
+             		<h1>Welcome to YelpCamp!</h1>
+            		<a href="/campground" class="btn btn-lg btn-success">View All Campgrounds</a>
+                </div>
+                
+                <ul class="slideshow">
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                </ul>
+             </div>
+     </body>
+</html>
