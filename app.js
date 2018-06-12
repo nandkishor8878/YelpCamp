@@ -15,8 +15,9 @@ var express            =require("express"),
 var indexRoutes        =require("./routs/index"),
     campgroundRoutes   =require("./routs/campgrounds"),
     commentRoutes      =require("./routs/comments");
-    
-mongoose.connect("mongodb://localhost/yelp_camp");
+mongoose.connect(process.env.DATABASEURL);
+//mongoose.connect("mongodb://localhost/yelp_camp");
+//mongoose.connect("mongodb://nkyelp:nk903933@ds255930.mlab.com:55930/nkyelpcamp");
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine", "ejs");
 app.use(express.static("public"));
