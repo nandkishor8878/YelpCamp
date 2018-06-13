@@ -3,12 +3,12 @@
     <header class="jumbotron">
        <h1><span class="glyphicon glyphicon-tent" aria-hidden="true"></span> WelCome To YelpCamp!!</h1>
        <p>View our hand-picked campground from all over the world</p>
-       <a class="btn btn-primary" href="/campground/new">
+       <a class="btn btn-success" href="/campground/new">
            Add new campground
        </a>
     </header>
     
-    <div class="row" style="display:flex; flex-wrap:wrap;">
+    <div class="row text-center" style="display:flex; flex-wrap:wrap;">
       <% campgrounds.forEach(function(cground){ %>
       <div class="col-md-3 col-sm-6">
           <div class="thumbnail">
@@ -16,7 +16,7 @@
             <div class="caption">
                 <h3> <%=cground.name%> </h3>
             </div>
-            <a class="btn btn-primary" href="/campground/<%= cground._id %> ">
+            <a class="btn btn-success" href="/campground/<%= cground._id %> ">
                 More Info
             </a>
           </div>

@@ -13,48 +13,60 @@
             <div class="thumbnail">
                 <img class="responsive" src=" <%= campground.image %> ">
                 <div class="caption-full">
-                    <h4 class="pull-right">$<%= campground.price %>/night</h4>
-                    <h4><a><%= campground.name %></a></ha>
-                    <p>
+                    <div>
+                        <h5 class="pull-right">$<%= campground.price %>/night</h5>
+                        <h4><a><%= campground.name %></a></ha>
+                    </div>
+                    <p class="description">
                         <%=campground.description %>
                     </p>
                     <p>
-                        Submited By: <a><%= campground.author.username %></a>
+                        Submited By: <a href="/profile"><%= campground.author.username %></a>
+                        <span class="pull-right">
+                            <%= moment(campground.createdAt).fromNow() %>
+                        </span>
                     </p>
                     <% if(currentUser && campground.author.id.equals(currentUser._id)){ %>
-                        <a class="btn btn-warning" href="/campground/<%= campground._id %>/edit">
-                            edit
+                        <a href="/campground/<%= campground._id %>/edit">
+                            <i class="fas fa-pencil-alt fa-2x"></i> 
                         </a>
                         <form class="delete-form" action="/campground/<%= campground._id %>?_method=DELETE" method="POST">
-                            <button class="btn btn-danger">Delete</button>
+                             <button id="delete-btn" class="fas fa-trash-alt fa-2x"></button>
                         </form>
                     <% } %>
                  </div>
             </div>
             <div class="well">
-                    <div class="text-right">
-                        <a class="btn btn-success" href="/campground/<%= campground._id %>/comments/new" >Add New Comment</a>
-                    </div>
-                    <hr>
                     <% campground.comments.forEach(function(comment){ %>
                     <div class="row">
                         <div class="col-md-12">
                             <strong> <%= comment.author.username %> </strong>
-                            <span class="pull-right">10 days ago</span>
+                            <span class="pull-right">
+                                <%= moment(comment.createdAt).fromNow() %>
+                            </span>
                             <p>
                                <%= comment.text %>
                             <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
                                 </p>
-                                <a class="btn btn-xs btn-warning" href="/campground/<%= campground._id %>/comments/<%= comment._id %>/edit">
-                                    edit
+                                <a href="/campground/<%= campground._id %>/comments/<%= comment._id %>/edit">
+                                    <i class="fas fa-pencil-alt fa-1g"></i>
                                 </a>
                                 <form class="delete-form" action="/campground/<%= campground._id %>/comments/<%= comment._id %>/?_method=DELETE" method="POST">
-                                    <button class="btn btn-xs btn-danger">Delete</button>
+                                    <button id="delete-btn" class="fas fa-trash-alt fa-1g"></button>
                                 </form>
                             <% } %>
                         </div>
                     </div>
                 <% }); %>
+                    <br>
+                     <form action="/campground/<%= campground._id %>/comments" method="POST">
+                             <div class="input-group">
+                                  <input type="text" class="form-control" name="comment[text]" placeholder="Add Comment" aria-describedby="basic-addon2">
+                                  <span class="input-group-btn" id="basic-addon2">
+                                     <button class="btn btn-default">Submit</button>
+                                  </span>
+                             </div>
+                     </form>
             </div>
         </div>
     </div>
