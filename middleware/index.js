@@ -13,12 +13,14 @@
                      next();
                  }
                  else{
+                     req.flash("error", "You don't have permission to do that!");
                      res.redirect("back");
                  }
              }
          });
      }
      else{
+         req.flash("error", "You need to be signed in to do that!");
          res.redirect("back");
      }
  };
@@ -34,12 +36,14 @@
                      next();
                  }
                  else{
+                     req.flash("error", "You don't have permission to do that!");
                      res.redirect("back");
                  }
              }
          });
      }
      else{
+         req.flash("error", "You need to be signed in to do that!");
          res.redirect("back");
      }
  };
@@ -48,6 +52,7 @@
         return next();
     }
     else{
+        req.flash("error", "You must be signed in to do that!");
         res.redirect("/login");
     }
 };

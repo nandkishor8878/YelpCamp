@@ -8,7 +8,7 @@ var express            =require("express"),
     Campground         =require("./models/campground"),
     Comment            =require("./models/comment"),
     seedDB             =require("./seed"),
-    methodOverride    =require("method-override"),
+    methodOverride     =require("method-override"),
     User               =require("./models/user");
     
 //requring reuts
@@ -16,10 +16,12 @@ var indexRoutes        =require("./routs/index"),
     campgroundRoutes   =require("./routs/campgrounds"),
     commentRoutes      =require("./routs/comments");
     
-mongoose.connect(process.env.DATABASEURL);
+    
+var databaseURL = process.env.DATABASEURL || 'mongodb://localhost/yelp_camp';
+mongoose.connect(databaseURL);
 //mongoose.connect("mongodb://localhost/yelp_camp");
 //mongoose.connect("mongodb://nkyelpcamp:nk903933@ds259070.mlab.com:59070/nkyelpcamp");
-//console.log(process.env.DATABASEURL);
+//console.log(databaseURL);
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine", "ejs");
@@ -33,18 +35,19 @@ app.use(require("express-session")({
     saveUninitialized:false
 }));
 
+
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
 app.use(function(req,res,next){
     res.locals.currentUser=req.user;
-    res.locals.error        =req.flash("error");
-    res.locals.success        =req.flash("success");
+    res.locals.error      =req.flash("error");
+    res.locals.success    =req.flash("success");
     next();
 });
-
 //use routs
 app.get("/profile", function(req, res){
     res.send("Working on profile section");
