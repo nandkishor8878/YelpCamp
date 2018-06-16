@@ -8,24 +8,37 @@
         <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
         <link rel="stylesheet" type="text/css" href="/stylesheets/ratting.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </head>
     <body>
         
-        <nav class="navbar navbar-inverse navbar-default">
+        <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-tent" aria-hidden="true"></span> YelpCamp</a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                        
+                    </button>
+                    <a class="navbar-brand" href="/campground"><span class="glyphicon glyphicon-tent" aria-hidden="true"></span> YelpCamp</a>
                 </div>
-                <div class="collapse navbar-collapse">
+                <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
                       <%  if(!currentUser){ %>
-                        <li><a href="/register">SignUp</a></li>
-                        <li><a href="/login">LogIn</a></li> 
+                        <li><a href="/register"><span class="glyphicon glyphicon-user"></span> SignUp</a></li>
+                        <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> LogIn</a></li> 
                       <%  } else{ %>
-                        <li><a href="#">Logged In as <%= currentUser.username %></a></li>
-                        <li><a href="/logout">LogOut</a></li>
+                        <li><a href="/profile">Logged In as <%= currentUser.username %></a></li>
+                        <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
                       <%  } %>
                     </ul>
+                    <form action="/campground" class="navbar-form navbar-right" method="GET">
+                        <div class="form-group">
+                          <input type="text" name="search" class="form-control" placeholder="Search Campgrounds">
+                        </div>
+                        <button type="submit" value="Search" class="btn btn-default">Submit</button>
+                    </form>
                 </div>
             </div>
         </nav>

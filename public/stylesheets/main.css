@@ -26,7 +26,8 @@
 .jumbotron{
     text-align: center;
     background-position: center;
-    background-image: url(https://campusa.s3.amazonaws.com/images/headers/cabins.jpg);
+    background-image: url(https://c.pxhere.com/photos/c0/dd/photo-1406460.jpg!d);
+    background-attachment: scroll;
     color: white;
 }
 #jumbotron-back{
@@ -63,4 +64,19 @@ legend{
 }
 #flash-msg{
     text-align: center;
+}
+#my-campground{
+    width: 100%;
+}
+.dropdown-menu-list{
+    width: 100%;
+}
+.campground-author{
+    width:100%;
+    text-align:center;
+    margin: 0;
+    padding-top:20px;
+    padding-bottom:10px;
+    background-color:#e7e7e7;
+    margin-bottom:10px;
 }
